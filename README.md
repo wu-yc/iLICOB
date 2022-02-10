@@ -62,6 +62,16 @@ This function will return a data.frame object containing the predicted AUC matri
 
 ### 3. Query gene of interest.
 
+    cor_mat <- iLICOB_query(input.gene = "CD274", input.omics = "RNA", cor.method = "pearson")
+
+
+`input.gene` is an official gene symbol.
+
+`input.omics` is the omics type of input matrix. It supports "RNA", "Protein", "CNV", and "Methylation". The default value is "RNA".
+
+`cor.method` is the correlation type. It supports "pearson" and "spearman". The default value is "pearson".
+
+This function will return a data.frame object containing the correlation estimate and P value between omics profile and drug response.
 
 
 
@@ -71,11 +81,10 @@ http://cancerdiversity.asia/LICOB/
 
 ## Contact
 
-Qiang Gao, MD, PhD
+Qiang Gao, MD, PhD.Department of Liver Surgery and Transplantation, Liver Cancer Institute, Zhongshan Hospital, Fudan University, Shanghai, China. gaoqiang@fudan.edu.cn
 
-Department of Liver Surgery and Transplantation, Liver Cancer Institute, Zhongshan Hospital, Fudan University, Shanghai, China
 
-gaoqiang@fudan.edu.cn
+Yidi Sun, PhD. Center for Excellence in Brain Science and Intelligence Technology (Institute of Neuroscience), Chinese Academy of Sciences, Shanghai, China. ydsun@ion.ac.cn
 
 
 Any technical question please contact Yingcheng Wu (wuyc@usa.com).

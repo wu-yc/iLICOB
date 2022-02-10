@@ -2,7 +2,7 @@
 `iLICOB`: an R package for exploring LICOB resource.
 
 ## Requirements
-    install.packages(c("stats"))
+    install.packages(c("pacman"))
  
 ## Install
     devtools::install_github("wu-yc/iLICOB")
@@ -14,11 +14,42 @@
 ### 1. Load packages and demo data
 The demo data is a subset of LICOB omics data and TCGA-LIHC RNA-seq data (Cell. 169.7(2017):1327-1341).
 
-    mat<-data_ilicob_tissue[[3]]
+    #load packages
+    library(iLICOB)
+    library(pacman)
+    p_load(DALEX,caret,tidyverse,elasticnet)
+    
+    #load data
+    load(file = system.file("data", "data_ilicob_org", package = "iLICOB"))
+    load(file = system.file("data", "data_ilicob_tissue", package = "iLICOB"))
+
 
 
 ### 2. Predict drug response based on omics profile
+    # 1 - Tissue demo data (TCGA-LIHC RNA-seq data)
+    mat = data_ilicob_tissue[[3]]
     AUC.predicted = iLICOB_predict(input.mat = mat, input.type = "Tissue", input.omics = "RNA")
+
+    # 2 - Organoid demo data (LICOB RNA-seq data)
+    mat = data_ilicob_org[[3]][[1]]
+    AUC.predicted = iLICOB_predict(input.mat = mat, input.type = "Tissue", input.omics = "RNA")
+
+    # 3 - Organoid demo data (LICOB Proteome data)
+    mat = data_ilicob_org[[3]][[2]]
+    AUC.predicted = iLICOB_predict(input.mat, input.type = "Organoid", input.omics = "Protein")
+
+    # 4 - Organoid demo data (LICOB CNV data)
+    mat = data_ilicob_org[[3]][[3]]
+    AUC.predicted = iLICOB_predict(input.mat, input.type = "Organoid", input.omics = "CNV")
+
+    # 5 - Organoid demo data (LICOB Methylation data)
+    mat = data_ilicob_org[[3]][[4]]
+    AUC.predicted = iLICOB_predict(input.mat, input.type = "Organoid", input.omics = "Methylation")
+
+    # 6 - Organoid demo data (LICOB Mutation data)
+    mat = data_ilicob_org[[3]][[5]]
+    AUC.predicted = iLICOB_predict(input.mat, input.type = "Organoid", input.omics = "Mutation")
+
 
 `input.mat` is a data.frame object of omics profile.
 
